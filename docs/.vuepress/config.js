@@ -7,7 +7,7 @@ module.exports = {
         //   disableDarkTheme: false,
         // },
         smoothScroll: true,
-        logo: "/images/logo-dark.png",
+        logo: "/images/logo.png",
         nav: [{
                 text: "Requisitos",
                 link: "/requisitos/",
