@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,13 @@ Route::post('/login', [UserController::class, 'authenticate']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', [UserController::class, 'getAuthenticatedUser']);
+
+    Route::prefix('category')->group(function () {
+        Route::get('/', [CategoryController::class, 'getAll']);
+        Route::get('/{id}', [CategoryController::class, 'get']);
+        Route::post('/', [CategoryController::class, 'save']);
+        Route::match(['put', 'patch'], '/{id}', [CategoryController::class, 'save']);
+        Route::delete('/{id}', [CategoryController::class, 'destroy']);
+    });
 
 });
