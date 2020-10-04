@@ -3,26 +3,114 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Category;
+use App\Models\Category;
+use App\Http\Requests\RequestCategory;
 
 class CategoryController extends Controller
 {
-    public function save(Request $request)
+    public function store(RequestCategory $request)
     {
         try
         {
-            dd($request);
             $category = new Category;
-            $category->name =
+            $category = $category->store($request);
+
             return response()->json([
                 'success' => true,
-                'message' =>
-            ]);
+                'message' => trans('message.store_category'),
+                'data' => $category
+            ], 201);
+
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => trans('message.error_store_category'),
+                'error_message' => $e->getMessage()
             ]);
+        }
+    }
+
+    public function update(RequestCategory $request)
+    {
+        try
+        {
+            $category = new Category;
+            $category = $category->att($request);
+
+            return response()->json([
+                'success' => true,
+                'message' => trans('message.update_category'),
+                'data' => $category
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_update_category'),
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function get($id)
+    {
+        try {
+            $category = new Category;
+
+            return response()->json([
+                'success' => true,
+                'data' => $category->findOrFail($id)
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_get_category'),
+                'error_message' => $e->getMessage()
+            ],404);
+        }
+    }
+
+    public function getAll()
+    {
+        try {
+            $category = new Category;
+            $categories = $category->all();
+
+            return response()->json([
+                'success' => true,
+                'data' => $categories
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_getAll_category'),
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $category = new Category;
+
+            $category = $category->findOrFail($id);
+
+            Category::destroy($id);
+
+            return response()->json([
+                'success' => true,
+                'message' => trans('message.destroy_category'),
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_destroy_category'),
+                'error_message' => $e->getMessage()
+            ], 200);
         }
     }
 }

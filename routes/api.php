@@ -30,8 +30,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::prefix('category')->group(function () {
         Route::get('/', [CategoryController::class, 'getAll']);
         Route::get('/{id}', [CategoryController::class, 'get']);
-        Route::post('/', [CategoryController::class, 'save']);
-        Route::match(['put', 'patch'], '/{id}', [CategoryController::class, 'save']);
+        Route::post('/', [CategoryController::class, 'store']);
+        Route::match(['put', 'patch'], '/{id}', [CategoryController::class, 'update']);
         Route::delete('/{id}', [CategoryController::class, 'destroy']);
     });
 
