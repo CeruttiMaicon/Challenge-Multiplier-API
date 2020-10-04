@@ -133,6 +133,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'name' => [
+            'min' => 'O número minimo de caracteres é 2',
+        ],
     ],
 
     /*
