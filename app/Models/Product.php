@@ -6,31 +6,33 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
+        'value',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->hasOne('App\Models\Category');
+    }
 
     public function store($request)
     {
         try {
 
-            $category = new Category;
+            $product = new Product;
 
-            return $this->make($category, $request);
+            return $this->make($product, $request);;
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message_error' => trans('message.error_register_category'),
+                'message_error' => trans('message.error_register_product'),
                 'message' => $e->getMessage()
             ]);
         }
@@ -40,37 +42,39 @@ class Category extends Model
     {
         try {
 
-            $category = new Category;
+            $product = new Product;
 
             if($request->id != null)
             {
-                $category = $category->findOrFail($request->id);
+                $product = $product->findOrFail($request->id);
             }
 
-            return $this->make($category, $request);
+            return $this->make($product, $request);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message_error' => trans('message.error_update_category'),
+                'message_error' => trans('message.error_update_product'),
                 'message' => $e->getMessage()
             ]);
         }
     }
 
-    private function make(Category $category, $request)
+    private function make(Product $product, $request)
     {
         try
         {
-            $category->name = $request->name;
-            $category->save();
+            $product->name = $request->name;
+            $product->value = $request->value;
+            $product->category_id = $request->category_id;
+            $product->save();
 
-            return $category;
+            return $product;
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message_error' => trans('message.error_make_category'),
+                'message_error' => trans('message.error_make_product'),
                 'message' => $e->getMessage()
             ]);
         }

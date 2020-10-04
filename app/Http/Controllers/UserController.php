@@ -17,14 +17,25 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         try {
-            if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+            if (! $token = JWTAuth::attempt($credentials))
+            {
+                return response()->json([
+                    'success' => false,
+                    'error' => trans('auth.failed')
+                ], 400);
             }
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+        } catch (JWTException $e)
+        {
+            return response()->json([
+                'success' => false,
+                'error' => 'could_not_create_token'
+            ], 500);
         }
 
-        return response()->json(compact('token'));
+        return response()->json([
+            'success' => true,
+            'token' => $token
+        ]);
     }
 
     public function register(Request $request)
@@ -36,7 +47,11 @@ class UserController extends Controller
         ]);
 
         if($validator->fails()){
-                return response()->json($validator->errors()->toJson(), 400);
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_form'),
+                'error_message' => $validator->errors(),
+            ], 400);
         }
 
         $user = User::create([

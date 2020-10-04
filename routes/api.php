@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,14 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::post('/', [CategoryController::class, 'store']);
         Route::match(['put', 'patch'], '/{id}', [CategoryController::class, 'update']);
         Route::delete('/{id}', [CategoryController::class, 'destroy']);
+    });
+
+    Route::prefix('product')->group(function () {
+        Route::get('/', [ProductController::class, 'getAll']);
+        Route::get('/{id}', [ProductController::class, 'get']);
+        Route::post('/', [ProductController::class, 'store']);
+        Route::match(['put', 'patch'], '/{id}', [ProductController::class, 'update']);
+        Route::delete('/{id}', [ProductController::class, 'destroy']);
     });
 
 });

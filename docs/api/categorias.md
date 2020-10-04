@@ -3,7 +3,7 @@
 ## Create
 
 ```url
-http://localhost/category
+http://localhost/api/category
 ```
 
 ### Request POST
@@ -32,7 +32,7 @@ http://localhost/category
 ### Parameters Error
 ```json
 {
-    "success": "false",
+    "success": false,
     "message": "Erro na validação do formulário",
     "error_message": {
         "nome-do-campo": [
@@ -46,13 +46,12 @@ http://localhost/category
 ## Update
 
 ```url
-http://localhost/category/1
+http://localhost/api/category/1
 ```
-### Request POST
+### Request PATCH or PUT
 
 ```json
 {
-  "id": 1,
   "name": "Novo nome da categoria",
 }
 ```
@@ -75,7 +74,7 @@ http://localhost/category/1
 ### Parameters Error
 ```json
 {
-    "success": "false",
+    "success": false,
     "message": "Erro na validação do formulário",
     "error_message": {
         "name": [
@@ -89,7 +88,7 @@ http://localhost/category/1
 ## Get
 
 ```url
-http://localhost/category/1
+http://localhost/api/category/1
 ```
 ### Request Get
 
@@ -120,7 +119,7 @@ http://localhost/category/1
 ## GetAll
 
 ```url
-http://localhost/category
+http://localhost/api/category
 ```
 ### Request Get
 
@@ -146,7 +145,7 @@ http://localhost/category
 {
     "success": false,
     "message": "Erro ao buscar categorias",
-    "error_message": "No query results for model [App\\Models\\Category] 55"
+    "error_message": "Mensagem de erro"
 }
 ```
 > status 404
@@ -154,21 +153,13 @@ http://localhost/category
 ## Delete
 
 ```url
-http://localhost/category/1
+http://localhost/api/category/1
 ```
 ### Parameters OK
 ```json
 {
     "success": true,
-    "data": [
-        {
-            "id": 1,
-            "name": "Nome categoria",
-            "created_at": "2020-10-04T00:25:16.000000Z",
-            "updated_at": "2020-10-04T11:53:31.000000Z"
-        },
-        ...
-    ]
+    "message": "Categoria deletada"
 }
 ```
 > status 200
@@ -177,8 +168,8 @@ http://localhost/category/1
 ```json
 {
     "success": false,
-    "message": "Erro ao buscar categorias",
-    "error_message": "No query results for model [App\\Models\\Category] 55"
+    "message": "Erro ao deletar categoria",
+    "error_message": "Mensagem de erro"
 }
 ```
 > status 404

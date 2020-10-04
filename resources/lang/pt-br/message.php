@@ -32,6 +32,24 @@ return [
     'destroy_category' => 'Categoria deletada',
     'error_destroy_category' => 'Erro ao deletar categoria',
     'error_get_category' => 'Erro ao buscar categoria',
-    'error_getAll_category' => 'Erro ao buscar categorias'
+    'error_getAll_category' => 'Erro ao buscar categorias',
+    'error_register_category' => 'Erro ao registrar categoria',
+    'error_update_category' => 'Erro ao atualizar categoria',
+    'error_make_category' => 'Erro ao efetuar o registro no banco de dados de categoria',
+    /*
+     *
+     * Product
+     */
+    'error_register_product' => 'Erro ao registrar produto',
+    'error_update_product' => 'Erro ao atualizar produto',
+    'error_make_product' => 'Erro ao efetuar o registro no banco de dados de produto',
+    'store_product' => 'Produto criado com sucesso!',
+    'error_store_product' => 'Erro ao criar produto',
+    'update_product' => 'Produto atualizado com sucesso!',
+    'error_update_product' => 'Erro ao atualizar produto',
+    'error_get_product' => 'Erro ao buscar produto',
+    'error_getAll_product' => 'Erro ao buscar produtos',
+    'destroy_product' => 'Produto deletado',
+    'error_destroy_product' => 'Erro ao deletar produto',
 
 ];
