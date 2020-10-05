@@ -1,4 +1,4 @@
-# API Usuários
+# Usuários
 
 ## Create
 
