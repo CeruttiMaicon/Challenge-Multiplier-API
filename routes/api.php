@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'authenticate']);
 
-
 Route::group(['middleware' => ['jwt.verify']], function() {
+
     Route::get('user', [UserController::class, 'getAuthenticatedUser']);
 
     Route::prefix('category')->group(function () {
@@ -44,4 +45,11 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::delete('/{id}', [ProductController::class, 'destroy']);
     });
 
+    Route::prefix('order')->group(function () {
+        Route::get('/', [OrderController::class, 'getAll']);
+        Route::get('/{id}', [OrderController::class, 'get']);
+        Route::post('/', [OrderController::class, 'store']);
+        Route::match(['put', 'patch'], '/{id}', [OrderController::class, 'update']);
+        Route::delete('/{id}', [OrderController::class, 'destroy']);
+    });
 });

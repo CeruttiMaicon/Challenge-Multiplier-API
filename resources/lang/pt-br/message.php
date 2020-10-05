@@ -51,5 +51,20 @@ return [
     'error_getAll_product' => 'Erro ao buscar produtos',
     'destroy_product' => 'Produto deletado',
     'error_destroy_product' => 'Erro ao deletar produto',
+    /*
+     *
+     * Order
+     */
+    'error_register_order' => 'Erro ao registrar pedido',
+    'error_update_order' => 'Erro ao atualizar pedido',
+    'error_make_order' => 'Erro ao efetuar o registro no banco de dados do pedido',
+    'store_order' => 'Pedido criado com sucesso!',
+    'error_store_order' => 'Erro ao criar pedido',
+    'update_order' => 'Pedido atualizado com sucesso!',
+    'error_update_order' => 'Erro ao atualizar pedido',
+    'error_get_order' => 'Erro ao buscar pedido',
+    'error_getAll_order' => 'Erro ao buscar pedido',
+    'destroy_order' => 'Pedido deletado',
+    'error_destroy_order' => 'Erro ao deletar pedido',
 
 ];

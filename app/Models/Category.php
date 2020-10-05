@@ -36,7 +36,7 @@ class Category extends Model
         }
     }
 
-    public function att($request)
+    public function edit($request)
     {
         try {
 
