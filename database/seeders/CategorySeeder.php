@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
             "Calçados",
             "Alimentação",
             "Limpeza",
-            "Vestuario"
+            "Vestuário"
         ];
 
         foreach($categories as $category)
