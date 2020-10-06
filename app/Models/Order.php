@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
 
 class Order extends Model
 {
@@ -64,6 +66,8 @@ class Order extends Model
     {
         try
         {
+            $title = $order->id == null ? "Novo Pedido" : "Atualização do Pedido";
+
             $order->user_id = $request->user_id;
             $dataSync = $this->formatValuesSync($request->products, $request->quantity);
 
@@ -72,6 +76,9 @@ class Order extends Model
 
             $order->products()->sync($dataSync['data']);
             $order->products;
+            $order->title_email = $title . " - #" . $order->id;
+
+            Mail::to('rodrigo@multiplier.com.br')->send(new OrderShipped($order));
 
             return $order;
 
@@ -106,6 +113,36 @@ class Order extends Model
                 'data' => $dataSync,
                 'total' => $total
             ];
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function get($id)
+    {
+        try {
+            $order = new Order;
+
+            $order = $order->findOrFail($id);
+
+            $value_total = 0;
+            $quantity_total = 0;
+
+            foreach ($order->products as $product)
+            {
+                $value_total += $product->pivot->value * $product->pivot->quantity;
+                $quantity_total += $product->pivot->quantity;
+                $product->pivot->sub_total = number_format(($product->pivot->value * $product->pivot->quantity), 2);
+            }
+
+            $order->value_total = $value_total;
+            $order->quantity_total = $quantity_total;
+
+            return $order;
 
         } catch (\Exception $e) {
             return response()->json([
