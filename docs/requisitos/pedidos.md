@@ -1,4 +1,4 @@
-# PEDIDOS
+# Pedidos
 
 No cadastro do pedido deve ser permitido adicionar os produtos cadastrados.
 

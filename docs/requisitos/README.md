@@ -1,4 +1,4 @@
-# REQUISITOS
+# Requisitos
 
 O sistema deve ser desenvolvido em PHP utilizando as seguintes tecnologias: 
 

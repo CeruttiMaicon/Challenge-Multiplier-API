@@ -1,5 +1,3 @@
-# USUÁRIOS
-
-## Requisitos
+# Usuários
 
 Dados para cadastro dos usuários: Nome, e-mail e senha.
