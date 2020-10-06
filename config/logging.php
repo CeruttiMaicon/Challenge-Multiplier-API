@@ -37,8 +37,16 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['mysql'],
             'ignore_exceptions' => false,
+        ],
+
+        'mysql' => [
+            'driver' => 'custom',
+            'via' => Logger\Laravel\Logging\MySQLLogger::class,
+            'connection' => env('DB_LOG_CONNECTION'),
+            'table' => env('DB_LOG_TABLE'),
+            'name' => 'my.channel' // optional
         ],
 
         'single' => [
