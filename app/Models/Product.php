@@ -27,7 +27,7 @@ class Product extends Model
 
             $product = new Product;
 
-            return $this->make($product, $request);;
+            return $this->make($product, $request);
 
         } catch (\Exception $e) {
             return response()->json([
@@ -38,7 +38,7 @@ class Product extends Model
         }
     }
 
-    public function att($request)
+    public function edit($request)
     {
         try {
 

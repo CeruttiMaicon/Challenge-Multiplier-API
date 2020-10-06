@@ -35,7 +35,7 @@ class CategoryController extends Controller
         try
         {
             $category = new Category;
-            $category = $category->att($request);
+            $category = $category->edit($request);
 
             return response()->json([
                 'success' => true,

@@ -35,7 +35,7 @@ class ProductController extends Controller
         try
         {
             $product = new Product;
-            $product = $product->att($request);
+            $product = $product->edit($request);
 
             return response()->json([
                 'success' => true,
@@ -75,11 +75,11 @@ class ProductController extends Controller
     {
         try {
             $product = new Product;
-            $categories = $product->all();
+            $products = $product->all();
 
             return response()->json([
                 'success' => true,
-                'data' => $categories
+                'data' => $products
             ], 200);
 
         } catch (\Exception $e) {
