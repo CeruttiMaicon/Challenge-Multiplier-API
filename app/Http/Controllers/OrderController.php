@@ -63,20 +63,7 @@ class OrderController extends Controller
         try {
             $order = new Order;
 
-            $order = $order->findOrFail($id);
-
-            $value_total = 0;
-            $quantity_total = 0;
-
-            foreach ($order->products as $product)
-            {
-                $value_total += $product->pivot->value * $product->pivot->quantity;
-                $quantity_total += $product->pivot->quantity;
-                $product->pivot->sub_total = $product->pivot->value * $product->pivot->quantity;
-            }
-
-            $order->value_total = $value_total;
-            $order->quantity_total = $quantity_total;
+            $order = $order->get($id);
 
             return response()->json([
                 'success' => true,
