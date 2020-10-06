@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('email', function () {
+    $order = App\Models\Order::findOrFail(1);
+
+    return new App\Mail\OrderShipped($order);
+});
