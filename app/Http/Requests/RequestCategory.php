@@ -32,8 +32,8 @@ class RequestCategory extends FormRequestAPI
     public function messages()
     {
         return[
-            'name.required' => 'O nome é obrigatório.',
-            'name.min' => 'O nome precisa conter no minímo 2 caracteres',
+            'name.required' => trans('validation_custom.name_required'),
+            'name.min' => trans('validation_custom.name_min'),
         ];
     }
 }

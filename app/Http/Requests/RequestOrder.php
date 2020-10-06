@@ -26,13 +26,17 @@ class RequestOrder extends FormRequestAPI
     {
         return [
             'user_id' => 'required',
+            'products.*' => 'required',
+            'quantity.*' => 'required',
         ];
     }
 
     public function messages()
     {
         return[
-            'user_id.required' => 'Um usuário é obrigatório.',
+            'user_id.required' => trans('validation_custom.user_required'),
+            'products.required' => trans('validation_custom.products_required'),
+            'quantity.required' => trans('validation_custom.quantity_required'),
         ];
     }
 }
