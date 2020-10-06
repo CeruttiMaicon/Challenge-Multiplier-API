@@ -18,6 +18,7 @@ class OrderShipped extends Mailable
      * @var \App\Models\Order
      */
     protected $order;
+    protected $title;
 
     /**
      * Create a new message instance.
@@ -27,7 +28,7 @@ class OrderShipped extends Mailable
     public function __construct(Order $order)
     {
         $this->order = $order->get($order->id);
-        $this->order->title_email = $order->title_email;
+        $this->title = $order->title_email;
     }
 
     /**
@@ -37,7 +38,7 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->from('desafio@multiplier.com.br')->subject($this->order->title_email)
+        return $this->from('desafio@multiplier.com.br')->subject($this->title)
             ->markdown('emails.orders.shipped')
             ->with([
                 'order' => $this->order,
