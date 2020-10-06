@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RequestOrder;
 use App\Models\Order;
+use Illuminate\Support\Facades\Log;
 
 
 class OrderController extends Controller
@@ -15,6 +16,8 @@ class OrderController extends Controller
         {
             $order = new Order;
             $order = $order->store($request);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' .  ' criou o pedido ' . $order->id);
 
             return response()->json([
                 'success' => true,
@@ -37,6 +40,8 @@ class OrderController extends Controller
         {
             $order = new Order;
             $order = $order->edit($request);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o pedido ' . $order->id);
 
             return response()->json([
                 'success' => true,
@@ -115,6 +120,8 @@ class OrderController extends Controller
             $order = $order->findOrFail($id);
 
             Order::destroy($id);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o pedido ' . $order->id);
 
             return response()->json([
                 'success' => true,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\RequestCategory;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -14,6 +15,8 @@ class CategoryController extends Controller
         {
             $category = new Category;
             $category = $category->store($request);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' criou a categoria ' . $category->name);
 
             return response()->json([
                 'success' => true,
@@ -36,6 +39,8 @@ class CategoryController extends Controller
         {
             $category = new Category;
             $category = $category->edit($request);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou a categoria ' . $category->name);
 
             return response()->json([
                 'success' => true,
@@ -99,6 +104,8 @@ class CategoryController extends Controller
             $category = $category->findOrFail($id);
 
             Category::destroy($id);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou a categoria ' . $category->name);
 
             return response()->json([
                 'success' => true,

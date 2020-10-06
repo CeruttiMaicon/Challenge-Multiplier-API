@@ -9,6 +9,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -61,6 +62,8 @@ class UserController extends Controller
         ]);
 
         $token = JWTAuth::fromUser($user);
+
+        Log::channel('mysql')->info('O usuário ' . $request->get('name') . ' [' . $request->get('email') . ']' . ' foi registrado no sistema');
 
         return response()->json(compact('user','token'),201);
     }

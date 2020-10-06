@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\RequestProduct;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -14,6 +15,8 @@ class ProductController extends Controller
         {
             $product = new Product;
             $product = $product->store($request);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' criou o produto ' . $product->name);
 
             return response()->json([
                 'success' => true,
@@ -36,6 +39,8 @@ class ProductController extends Controller
         {
             $product = new Product;
             $product = $product->edit($request);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o produto ' . $product->name);
 
             return response()->json([
                 'success' => true,
@@ -99,6 +104,8 @@ class ProductController extends Controller
             $product = $product->findOrFail($id);
 
             Product::destroy($id);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o produto ' . $product->name);
 
             return response()->json([
                 'success' => true,

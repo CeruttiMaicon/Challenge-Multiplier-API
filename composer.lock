@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9fd913a859e3543930f4f7167e46f502",
+    "content-hash": "55006c81c25cead555b6371bd791d4c8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -756,6 +756,57 @@
                 "url"
             ],
             "time": "2020-09-30T07:37:11+00:00"
+        },
+        {
+            "name": "itelmenko/laravel-mysql-logger",
+            "version": "v0.1.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itelmenko/laravel-mysql-logger.git",
+                "reference": "9a15432f912c634b5ec0a969e0975349985a879d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itelmenko/laravel-mysql-logger/zipball/9a15432f912c634b5ec0a969e0975349985a879d",
+                "reference": "9a15432f912c634b5ec0a969e0975349985a879d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Logger\\Laravel\\Providers\\MonologMysqlHandlerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Logger": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Telmenko",
+                    "email": "igor.telmenko@gmail.com"
+                }
+            ],
+            "description": "Laravel 5.6+ MySQL driver for Monolog",
+            "homepage": "https://github.com/itelmenko/laravel-mysql-logger",
+            "keywords": [
+                "laravel",
+                "laravel5.6",
+                "log",
+                "monolog",
+                "mysql"
+            ],
+            "time": "2020-08-28T06:26:45+00:00"
         },
         {
             "name": "laravel/framework",

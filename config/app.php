@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //JWT
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        //Log
+        Logger\Laravel\Providers\MonologMysqlHandlerServiceProvider::class,
 
         /*
          * Package Service Providers...
