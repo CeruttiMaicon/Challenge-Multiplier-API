@@ -34,10 +34,10 @@ class RequestProduct extends FormRequestAPI
     public function messages()
     {
         return[
-            'name.required' => 'O nome é obrigatório.',
-            'name.min' => 'O nome precisa conter no minímo 2 caracteres',
-            'value.required' => 'É necessário informar um valor',
-            'category_id.required' => 'É necessário selecionar uma categoria',
+            'name.required' => trans('validation_custom.name_required'),
+            'name.min' => trans('validation_custom.name_min'),
+            'value.required' => trans('validation_custom.value_required'),
+            'category_id.required' => trans('validation_custom.category_id_required'),
         ];
     }
 }
