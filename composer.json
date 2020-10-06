@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "itelmenko/laravel-mysql-logger": "^0.1.15",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "tymon/jwt-auth": "dev-develop"
