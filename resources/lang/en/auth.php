@@ -15,5 +15,8 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'token_is_expired' => 'Your authentication token is expired.',
+    'authorization_token_not_found' => 'Authorization token not found',
+    'token_is_invalid' => 'This token is invalid',
+    'could_not_create_token' => 'The token could not be created'
 ];
