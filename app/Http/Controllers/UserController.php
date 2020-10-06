@@ -29,7 +29,7 @@ class UserController extends Controller
         {
             return response()->json([
                 'success' => false,
-                'error' => 'could_not_create_token'
+                'error' => trans('auth.could_not_create_token')
             ], 500);
         }
 

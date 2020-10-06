@@ -13,10 +13,14 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'token_is_expired' => 'Your authentication token is expired.',
-    'authorization_token_not_found' => 'Authorization token not found',
-    'token_is_invalid' => 'This token is invalid',
-    'could_not_create_token' => 'The token could not be created'
+    'user_required' => 'Um usuário é obrigatório.',
+    'products_required' => 'Informar ao menos um produto para o pedido.',
+    'quantity_required' => 'Informar a quantidade de produtos é obrigatório.',
+
+    'name_required' => 'O nome é obrigatório.',
+    'name_min' => 'O nome precisa conter no minímo 2 caracteres.',
+
+    'value_required' => 'É necessário informar um valor.',
+    'category_id_required' => 'É necessário selecionar uma categoria.'
+
 ];
