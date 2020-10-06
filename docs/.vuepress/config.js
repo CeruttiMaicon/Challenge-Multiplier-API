@@ -18,7 +18,7 @@ module.exports = {
             },
         ],
         sidebar: {
-            "/requisitos/": ["", "usuarios", "categorias", "produtos", "pedidos"],
+            "/requisitos/": ["", "usuarios", "categorias", "produtos", "pedidos", "logs"],
             "/api/": ["", "usuarios", "categorias", "produtos", "pedidos"],
         },
     },
