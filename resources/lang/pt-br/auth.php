@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Essas credenciais não correspondem aos nossos registros.',
+    'failed' => 'Credenciais inválidas',
     'throttle' => 'Muitas tentativas de login. Tente novamente em: segundos segundos.',
     'token_is_expired' => 'Seu token de autenticação está expirado.',
     'authorization_token_not_found' => 'Token de autorização não encontrado.',

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
+    'failed' => 'Invalid credentials',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'token_is_expired' => 'Your authentication token is expired.',
     'authorization_token_not_found' => 'Authorization token not found',
