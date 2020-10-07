@@ -74,6 +74,12 @@ composer install && yarn
 
 ```
 
+Gerar chave aplicação
+
+```cmd
+php artisan key:generate
+```
+
 Para gerar alguns registros no banco de dados execute:
 
 ```cmd
