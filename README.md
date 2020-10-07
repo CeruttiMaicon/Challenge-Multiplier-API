@@ -10,6 +10,12 @@ Clone o projeto.
 git clone https://github.com/CeruttiMaicon/Challenge-Multiplier.git
 ```
 
+Após a clonagem
+
+```cmd
+cd Challenge-Multiplier/
+```
+
 Para montar a infraestrutura de desenvolvimento eu utilizei o Laradock.
 
 Clone o Laradock como submodulo utilizando o seguinte comando:
@@ -36,10 +42,23 @@ MYSQL_VERSION=5.7
 ...
 ```
 
+Agora copie o .env da raiz do projeto Laravel
+
+```
+cp .env.example .env
+```
+> Faça as alterações que julgar necessário exemp: Mailtrap...
+
 Agora utilize o docker deste submodulo com o comando:
+
+> Atenção: Lembre-se de parar o serviço do Mysql se o estiver utilizando 
+
+>`sudo service mysql stop`
+
 > Isso pode levar alguns minutos (busque um café hehe).
+
 ```docker-compose
-docker-compose up -d nginx mysql phpmyadmin portainer
+cd laradock && docker-compose up -d nginx mysql phpmyadmin portainer
 ```
 
 Acesse o container de desenvolvimento.
@@ -55,6 +74,12 @@ composer install && yarn
 
 ```
 
+Para gerar alguns registros no banco de dados execute:
+
+```cmd
+php artisan migrate --seed
+```
+
 Agora tudo já deve estar rodando certinho para o back-end :)
 
 Para documentação do projeto e da API do back-end eu criei uma documentação utilizando o VuePress. Para utiliza-la basta executar:
@@ -64,3 +89,27 @@ yarn docs:dev
 ```
 
 > A aplicação VuePress estará disponível em http://localhost:8080
+
+## Ambiente Gerado
+
+### [Localhost](http://localhost)
+
+Vai mostrar a página inicial do projeto Laravel.
+
+Agora faça o start do projeto front-end.
+
+> Credenciais para login aplicação
+```
+User: desafio@multiplier.com
+Password: secret
+```
+
+### [PHP MyAdmin](http://localhost:8081)
+
+```
+Server: laradock_mysql_1
+User: default
+Password: secret
+```
+
+### [Portainer](http://localhost:9010)
