@@ -1,11 +1,14 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
-
 # Desafio Multiplier
 
 ## Start Projeto
+
+Clone o projeto.
+
+```git
+git clone https://github.com/CeruttiMaicon/Challenge-Multiplier.git
+```
 
 Para montar a infraestrutura de desenvolvimento eu utilizei o Laradock.
 
@@ -60,4 +63,4 @@ Para documentação do projeto e da API do back-end eu criei uma documentação 
 yarn docs:dev
 ```
 
-> A aplicação estará disponível em http://localhost:8080
+> A aplicação VuePress estará disponível em http://localhost:8080
