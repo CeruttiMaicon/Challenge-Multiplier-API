@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        for ($id = 1; $id <= 110; $id++) {
+        for ($id = 1; $id <= 10; $id++) {
             \App\Models\Product::create([
                 'name' => 'Produto ' . $id,
                 'value' => rand(5, 100),
