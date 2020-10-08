@@ -66,7 +66,7 @@ class ProductController extends Controller
                 'success' => true,
                 'data' => $product->where('products.id', $id)
                     ->join('categories', 'products.category_id', 'categories.id')
-                    ->select('products.*', 'categories.name as category_name')->get(),
+                    ->select('products.*', 'categories.name as category_name')->first(),
             ]);
 
         } catch (\Exception $e) {
