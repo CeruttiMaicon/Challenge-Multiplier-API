@@ -62,11 +62,11 @@ class ProductController extends Controller
         try {
             $product = new Product;
 
+            $product = $product->get($id);
+
             return response()->json([
                 'success' => true,
-                'data' => $product->where('products.id', $id)
-                    ->join('categories', 'products.category_id', 'categories.id')
-                    ->select('products.*', 'categories.name as category_name')->first(),
+                'data' => $product,
             ]);
 
         } catch (\Exception $e) {
@@ -82,9 +82,7 @@ class ProductController extends Controller
     {
         try {
             $product = new Product;
-            $products = $product
-                ->join('categories', 'products.category_id', 'categories.id')
-                ->select('products.*', 'categories.name as category_name')->get();
+            $products = $product->getAll();
 
             return response()->json([
                 'success' => true,

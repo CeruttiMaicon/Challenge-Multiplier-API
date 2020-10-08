@@ -79,4 +79,38 @@ class Product extends Model
             ]);
         }
     }
+
+    public function get($id)
+    {
+        try {
+            $product = new Product;
+
+            return $product->findOrFail($id)
+            ->join('categories', 'products.category_id', 'categories.id')
+            ->select('products.*', 'categories.name as category_name')->first();
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getAll()
+    {
+        try {
+            $product = new Product;
+
+            return  $product
+            ->join('categories', 'products.category_id', 'categories.id')
+            ->select('products.*', 'categories.name as category_name')->get();
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 }
