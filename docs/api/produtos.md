@@ -114,7 +114,8 @@ http://localhost/api/product/1
         "value": "20.00",
         "deleted_at": null,
         "created_at": "2020-10-04T17:03:01.000000Z",
-        "updated_at": "2020-10-04T17:10:08.000000Z"
+        "updated_at": "2020-10-04T17:10:08.000000Z",
+        "category_name": "Calçados"
     }
 }
 ```
@@ -149,7 +150,8 @@ http://localhost/api/product
             "value": "20.00",
             "deleted_at": null,
             "created_at": "2020-10-04T17:03:01.000000Z",
-            "updated_at": "2020-10-04T17:10:08.000000Z"
+            "updated_at": "2020-10-04T17:10:08.000000Z",
+            "category_name": "Calçados"
         },
         ...
     ]

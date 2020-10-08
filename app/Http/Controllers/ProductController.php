@@ -64,7 +64,9 @@ class ProductController extends Controller
 
             return response()->json([
                 'success' => true,
-                'data' => $product->findOrFail($id)
+                'data' => $product->where('products.id', $id)
+                    ->join('categories', 'products.category_id', 'categories.id')
+                    ->select('products.*', 'categories.name as category_name')->get(),
             ]);
 
         } catch (\Exception $e) {
@@ -80,7 +82,9 @@ class ProductController extends Controller
     {
         try {
             $product = new Product;
-            $products = $product->all();
+            $products = $product
+                ->join('categories', 'products.category_id', 'categories.id')
+                ->select('products.*', 'categories.name as category_name')->get();
 
             return response()->json([
                 'success' => true,
