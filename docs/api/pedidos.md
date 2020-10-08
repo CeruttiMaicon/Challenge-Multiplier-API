@@ -153,7 +153,7 @@ http://localhost/api/order/1
         "created_at": "2020-10-05T01:19:57.000000Z",
         "updated_at": "2020-10-05T01:19:57.000000Z",
         "user_name": "Maicon Cerutti",
-        "value_total": 266,
+        "total": "266.00",
         "quantity_total": 3,
         "products": [
             {
