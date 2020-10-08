@@ -127,7 +127,10 @@ class Order extends Model
         try {
             $order = new Order;
 
-            $order = $order->findOrFail($id);
+            $order = $order->findOrFail($id)
+                ->join('users', 'users.id', 'orders.user_id')
+                ->select('orders.*', 'users.name as user_name_order')
+                ->first();
 
             $value_total = 0;
             $quantity_total = 0;
