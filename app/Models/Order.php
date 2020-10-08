@@ -129,7 +129,7 @@ class Order extends Model
 
             $order = $order->findOrFail($id)
                 ->join('users', 'users.id', 'orders.user_id')
-                ->select('orders.*', 'users.name as user_name_order')
+                ->select('orders.*', 'users.name as user_name')
                 ->first();
 
             $value_total = 0;
