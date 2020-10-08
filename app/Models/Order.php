@@ -137,6 +137,8 @@ class Order extends Model
 
             foreach ($order->products as $product)
             {
+
+                $product->category;
                 $quantity_total += $product->pivot->quantity;
                 $product->pivot->sub_total = number_format(($product->pivot->value * $product->pivot->quantity), 2);
             }

@@ -18,7 +18,7 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasOne('App\Models\Category');
+        return $this->belongsTo('App\Models\Category');
     }
 
     public function store($request)
