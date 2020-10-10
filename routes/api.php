@@ -22,12 +22,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'authenticate']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 
-    Route::get('user', [UserController::class, 'getAuthenticatedUser']);
+    // Em problema de login verificar aqui
+    //Route::get('user', [UserController::class, 'getAuthenticatedUser']);
+
+    Route::prefix('user')->group(function () {
+        Route::get('/auth', [UserController::class, 'getAuthenticatedUser']);
+        Route::get('/', [UserController::class, 'getAll']);
+        Route::get('/{id}', [UserController::class, 'get']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::match(['put', 'patch'], '/{id}', [UserController::class, 'update']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+    });
 
     Route::prefix('category')->group(function () {
         Route::get('/', [CategoryController::class, 'getAll']);
