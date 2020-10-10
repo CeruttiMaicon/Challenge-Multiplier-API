@@ -10,7 +10,6 @@ http://localhost/api/order
 
 ```json
 {
-  "user_id": 1,
   "products[0]": 60,
   "products[1]": 62,
   "quantity[0]": 6,
@@ -76,7 +75,6 @@ http://localhost/api/order/1
 
 ```json
 {
-  "user_id": 1,
   "products[0]": 60,
   "products[1]": 62,
   "quantity[0]": 6,
