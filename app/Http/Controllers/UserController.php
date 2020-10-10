@@ -10,6 +10,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\RequestCreateUser;
+use App\Http\Requests\RequestUpdateUser;
 
 class UserController extends Controller
 {
@@ -39,33 +41,50 @@ class UserController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function store(RequestCreateUser $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        try {
+            $user = new User;
 
-        if($validator->fails()){
+            $user = $user->store($request);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' registrou no sistema o usuário ' . $user->name . ' [' . $user->email . '].');
+
+            return response()->json([
+                'success' => true,
+                'message' => trans('message.store_user'),
+                'data' => $user,
+            ], 201);
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => trans('message.error_form'),
-                'error_message' => $validator->errors(),
-            ], 400);
+                'message' => trans('message.error_store_user'),
+                'error_message' => $e->getMessage()
+            ]);
         }
+    }
 
-        $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
-        ]);
+    public function update(RequestUpdateUser $request)
+    {
+        try {
+            $user = new User;
+            $user = $user->edit($request);
 
-        $token = JWTAuth::fromUser($user);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou no sistema o usuário ' . $user->name . ' [' . $user->email . '].');
 
-        Log::channel('mysql')->info('O usuário ' . $request->get('name') . ' [' . $request->get('email') . ']' . ' foi registrado no sistema');
+            return response()->json([
+                'success' => true,
+                'message' => trans('message.update_user'),
+                'data' => $user,
+            ], 201);
 
-        return response()->json(compact('user','token'),201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_update_user'),
+                'error_message' => $e->getMessage()
+            ]);
+        }
     }
 
     public function getAuthenticatedUser()
@@ -90,5 +109,62 @@ class UserController extends Controller
         }
 
         return response()->json(compact('user'));
+    }
+
+    public function get($id)
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'data' => User::findOrFail($id)->first()
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_get_user'),
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getAll()
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'data' => User::all()
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_getAll_user'),
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $user = new User;
+
+            $user = $user->findOrFail($id);
+
+            User::destroy($id);
+
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o usuário ' . $user->name . ' [' . $user->email . '].');
+
+            return response()->json([
+                'success' => true,
+                'message' => trans('message.destroy_user'),
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('message.error_destroy_user'),
+                'error_message' => $e->getMessage()
+            ], 200);
+        }
     }
 }
