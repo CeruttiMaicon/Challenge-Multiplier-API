@@ -16,7 +16,7 @@ class CategoryController extends Controller
             $category = new Category;
             $category = $category->store($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' criou a categoria ' . $category->name);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' criou a categoria ' . $category->name, [$category]);
 
             return response()->json([
                 'success' => true,
@@ -38,9 +38,10 @@ class CategoryController extends Controller
         try
         {
             $category = new Category;
+            $old_category = $category->findOrFail($request->id);
             $category = $category->edit($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou a categoria ' . $category->name);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou a categoria ' . $category->name, ['new' => $category, 'old' => $old_category]);
 
             return response()->json([
                 'success' => true,
@@ -105,7 +106,7 @@ class CategoryController extends Controller
 
             Category::destroy($id);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou a categoria ' . $category->name);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou a categoria ' . $category->name, [$category]);
 
             return response()->json([
                 'success' => true,
