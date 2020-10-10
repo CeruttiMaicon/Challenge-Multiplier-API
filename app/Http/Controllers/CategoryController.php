@@ -41,7 +41,7 @@ class CategoryController extends Controller
             $old_category = $category->findOrFail($request->id);
             $category = $category->edit($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou a categoria ' . $old_category->name . 'para ' $category->name, ['new' => $category->toJson(), 'old' => $old_category->toJson()]);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou a categoria ' . $old_category->name . 'para ' . $category->name, ['new' => $category->toJson(), 'old' => $old_category->toJson()]);
 
             return response()->json([
                 'success' => true,
