@@ -76,10 +76,14 @@ return [
     'store_user' => 'Usuário criado com sucesso!',
     'error_store_user' => 'Erro ao criar usuário',
     'update_user' => 'Usuário atualizado com sucesso!',
-    'error_update_user' => 'Erro ao atualizar usuário',
     'error_get_user' => 'Erro ao buscar usuário',
     'error_getAll_user' => 'Erro ao buscar usuários',
     'destroy_user' => 'Usuário deletado',
     'error_destroy_user' => 'Erro ao deletar usuário',
+    /*
+     *
+     * Log
+     */
+    'error_getAll_log' => 'Erro ao buscar registros de log',
 
 ];

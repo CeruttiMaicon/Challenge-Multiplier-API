@@ -63,5 +63,23 @@ return [
     'error_getAll_order' => 'Error fetching order',
     'destroy_order' => 'Deleted order',
     'error_destroy_order' => 'Error deleting order',
-
+    /*
+     *
+     * User
+     */
+    'error_register_user' => 'Error registering user',
+    'error_update_user' => 'Error updating user',
+    'error_make_user' => 'Error when registering in the user database',
+    'store_user' => 'User created successfully!',
+    'error_store_user' => 'Error creating user',
+    'update_user' => 'User updated successfully!',
+    'error_get_user' => 'Error fetching user',
+    'error_getAll_user' => 'Error fetching users',
+    'destroy_user' => 'Deleted user',
+    'error_destroy_user' => 'Error deleting user',
+    /*
+     *
+     * Log
+     */
+    'error_getAll_log' => 'Error fetching log records',
 ];
