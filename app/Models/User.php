@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -51,5 +52,71 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function store ($request)
+    {
+        try {
+
+            $user = new User;
+
+            return $this->make($user, $request);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message_error' => trans('message.error_register_user'),
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function edit($request)
+    {
+        try {
+
+            $user = new User;
+
+            if($request->id != null)
+            {
+                $user = $user->findOrFail($request->id);
+            }
+
+            return $this->make($user, $request);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message_error' => trans('message.error_update_user'),
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    private function make(User $user, $request)
+    {
+        try
+        {
+            if($user->id)
+            {
+                $user = User::find($user->id);
+            } else {
+                $user = new User;
+            }
+                $user->email = $request->email;
+                $user->name = $request->name;
+                $user->password = Hash::make($request->password);
+
+                $user->save();
+
+            return $user;
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message_error' => trans('message.error_make_user'),
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 }

@@ -66,5 +66,20 @@ return [
     'error_getAll_order' => 'Erro ao buscar pedido',
     'destroy_order' => 'Pedido deletado',
     'error_destroy_order' => 'Erro ao deletar pedido',
+    /*
+     *
+     * User
+     */
+    'error_register_user' => 'Erro ao registrar usuário',
+    'error_update_user' => 'Erro ao atualizar usuário',
+    'error_make_user' => 'Erro ao efetuar o registro no banco de dados do usuário',
+    'store_user' => 'Usuário criado com sucesso!',
+    'error_store_user' => 'Erro ao criar usuário',
+    'update_user' => 'Usuário atualizado com sucesso!',
+    'error_update_user' => 'Erro ao atualizar usuário',
+    'error_get_user' => 'Erro ao buscar usuário',
+    'error_getAll_user' => 'Erro ao buscar usuários',
+    'destroy_user' => 'Usuário deletado',
+    'error_destroy_user' => 'Erro ao deletar usuário',
 
 ];
