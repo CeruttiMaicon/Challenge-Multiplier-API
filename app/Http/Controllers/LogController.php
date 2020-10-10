@@ -11,7 +11,8 @@ class LogController extends Controller
     {
         try
         {
-            $logs = Log::all();
+            //Comentado pois achei estranho mostrar os logs de erro na aplicação
+            $logs = Log::where('level', 'INFO')->get();
 
             return response()->json([
                 'success' => true,
