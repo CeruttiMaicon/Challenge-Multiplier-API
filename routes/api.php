@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\LogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', [UserController::class, 'authenticate']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-
-    // Em problema de login verificar aqui
-    //Route::get('user', [UserController::class, 'getAuthenticatedUser']);
 
     Route::prefix('user')->group(function () {
         Route::get('/auth', [UserController::class, 'getAuthenticatedUser']);
@@ -60,5 +58,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::post('/', [OrderController::class, 'store']);
         Route::match(['put', 'patch'], '/{id}', [OrderController::class, 'update']);
         Route::delete('/{id}', [OrderController::class, 'destroy']);
+    });
+
+    Route::prefix('log')->group(function () {
+        Route::get('/', [LogController::class, 'getAll']);
     });
 });
