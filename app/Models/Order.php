@@ -127,7 +127,7 @@ class Order extends Model
         try {
             $order = new Order;
 
-            $order = $order->findOrFail($id)
+            $order = $order->where('orders.id', $id)
                 ->join('users', 'users.id', 'orders.user_id')
                 ->select('orders.*', 'users.name as user_name')
                 ->first();
