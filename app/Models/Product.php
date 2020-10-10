@@ -85,9 +85,10 @@ class Product extends Model
         try {
             $product = new Product;
 
-            return $product->findOrFail($id)
-            ->join('categories', 'products.category_id', 'categories.id')
-            ->select('products.*', 'categories.name as category_name')->first();
+            return $product->where('products.id', $id)
+                ->join('categories', 'products.category_id', 'categories.id')
+                ->select('products.*', 'categories.name as category_name')
+                ->first();
 
         } catch (\Exception $e) {
             return response()->json([
