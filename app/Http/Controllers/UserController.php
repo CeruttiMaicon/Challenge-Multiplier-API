@@ -117,7 +117,7 @@ class UserController extends Controller
         try {
             return response()->json([
                 'success' => true,
-                'data' => User::findOrFail($id)->first()
+                'data' => User::findOrFail($id)
             ]);
         } catch (\Exception $e) {
             return response()->json([

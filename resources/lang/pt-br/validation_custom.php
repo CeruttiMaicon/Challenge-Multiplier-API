@@ -21,6 +21,12 @@ return [
     'name_min' => 'O nome precisa conter no minímo 2 caracteres.',
 
     'value_required' => 'É necessário informar um valor.',
-    'category_id_required' => 'É necessário selecionar uma categoria.'
+    'category_id_required' => 'É necessário selecionar uma categoria.',
+
+    'password_min' => 'A senha deve ter no minímo 6 caracteres.',
+    'password_required' => 'A senha é obrigatória.',
+    'password_confirmed' => 'Senha e Confirmação de Senha não são iguais.',
+    'email_required' => 'O E-mail é obrigatório.',
+    'email_unique' => 'Este endereço de e-mail já está registrado.'
 
 ];

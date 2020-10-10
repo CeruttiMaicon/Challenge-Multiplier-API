@@ -25,9 +25,22 @@ class RequestCreateUser extends FormRequestAPI
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|min:2',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+            'name.required' => trans('validation_custom.name_required'),
+            'name.min' => trans('validation_custom.name_min'),
+            'password.min' => trans('validation_custom.password_min'),
+            'password.required' => trans('validation_custom.password_required'),
+            'password.confirmed' => trans('validation_custom.password_confirmed'),
+            'email.required' => trans('validation_custom.email_required'),
+            'email.unique' => trans('validation_custom.email_unique'),
         ];
     }
 }

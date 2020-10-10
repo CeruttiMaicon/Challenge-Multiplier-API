@@ -41,7 +41,7 @@ class ProductController extends Controller
             $old_product = $product->findOrFail($request->id);
             $product = $product->edit($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o produto ' . $product->name, ['new' => $product->toJson(), 'old' => $old_product->toJson()]);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o produto [código] =>' . $product->id, ['new' => $product->toJson(), 'old' => $old_product->toJson()]);
 
             return response()->json([
                 'success' => true,
