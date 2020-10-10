@@ -48,7 +48,7 @@ class UserController extends Controller
 
             $user = $user->store($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' registrou no sistema o usuário ' . $user->name . ' [' . $user->email . '].');
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' registrou no sistema o usuário ' . $user->name . ' [' . $user->email . '].', [$user]);
 
             return response()->json([
                 'success' => true,
@@ -68,9 +68,10 @@ class UserController extends Controller
     {
         try {
             $user = new User;
+            $old_user = $user->findOrFail($request->id);
             $user = $user->edit($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou no sistema o usuário ' . $user->name . ' [' . $user->email . '].');
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou no sistema o usuário ' . $user->name . ' [' . $user->email . '].', ['new' => $user, 'old' => $old_user]);
 
             return response()->json([
                 'success' => true,
@@ -152,7 +153,7 @@ class UserController extends Controller
 
             User::destroy($id);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o usuário ' . $user->name . ' [' . $user->email . '].');
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o usuário ' . $user->name . ' [' . $user->email . '].', [$user]);
 
             return response()->json([
                 'success' => true,

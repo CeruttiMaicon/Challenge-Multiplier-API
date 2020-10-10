@@ -17,7 +17,7 @@ class OrderController extends Controller
             $order = new Order;
             $order = $order->store($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' .  ' criou o pedido ' . $order->id);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' .  ' criou o pedido ' . $order->id, [$order]);
 
             return response()->json([
                 'success' => true,
@@ -39,9 +39,10 @@ class OrderController extends Controller
         try
         {
             $order = new Order;
+            $old_order = $order->findOrFail($request->id);
             $order = $order->edit($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o pedido ' . $order->id);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o pedido ' . $order->id, ['new' => $order, 'old' => $old_order]);
 
             return response()->json([
                 'success' => true,
@@ -108,7 +109,7 @@ class OrderController extends Controller
 
             Order::destroy($id);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o pedido ' . $order->id);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o pedido ' . $order->id, [$order]);
 
             return response()->json([
                 'success' => true,
