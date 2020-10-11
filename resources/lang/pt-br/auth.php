@@ -18,6 +18,7 @@ return [
     'token_is_expired' => 'Seu token de autenticação está expirado.',
     'authorization_token_not_found' => 'Token de autorização não encontrado.',
     'token_is_invalid' => 'Este token é inválido',
-    'could_not_create_token' => 'Não foi possível criar o token'
+    'could_not_create_token' => 'Não foi possível criar o token',
+    'user_logout' => 'Logout bem sucedido!'
 
 ];
