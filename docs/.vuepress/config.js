@@ -16,10 +16,15 @@ module.exports = {
                 text: "API",
                 link: "/api/",
             },
+            {
+                text: "Change Logs",
+                link: "/change-log/",
+            },
         ],
         sidebar: {
             "/requisitos/": ["", "usuarios", "categorias", "produtos", "pedidos", "logs"],
-            "/api/": ["", "usuarios", "categorias", "produtos", "pedidos", "logs", ],
+            "/api/": ["", "usuarios", "categorias", "produtos", "pedidos", "logs"],
+            "/change-log/": ["", "back-end", "front-end"],
         },
     },
 };
