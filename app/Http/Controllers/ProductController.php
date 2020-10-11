@@ -16,7 +16,7 @@ class ProductController extends Controller
             $product = new Product;
             $product = $product->store($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' criou o produto ' . $product->name, [$product->toJson()]);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' criou o produto ' . $product->name . '[' . $product->id . ']', [$product->toJson()]);
 
             return response()->json([
                 'success' => true,
@@ -41,7 +41,7 @@ class ProductController extends Controller
             $old_product = $product->findOrFail($request->id);
             $product = $product->edit($request);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o produto [código] =>' . $product->id, ['new' => $product->toJson(), 'old' => $old_product->toJson()]);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' atualizou o produto ' . $product->name . ' [' . $product->id . ']', ['new' => $product->toJson(), 'old' => $old_product->toJson()]);
 
             return response()->json([
                 'success' => true,
@@ -108,7 +108,7 @@ class ProductController extends Controller
 
             Product::destroy($id);
 
-            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o produto ' . $product->name, [$product->toJson()]);
+            Log::channel('mysql')->info('O usuário ' . \Auth::user()->name . ' [' . \Auth::user()->email . ']' . ' deletou o produto ' . $product->name . '[' . $product->id . ']', [$product->toJson()]);
 
             return response()->json([
                 'success' => true,
