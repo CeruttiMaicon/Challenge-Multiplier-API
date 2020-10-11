@@ -1,6 +1,3 @@
 # Desafio Multiplier
 
-
-
-## Change Log - Front End
-
+Documentação da aplicação.
