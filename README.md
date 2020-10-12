@@ -4,16 +4,10 @@
 
 ## Start Projeto
 
-Clone o projeto.
-
-```git
-git clone https://github.com/CeruttiMaicon/Challenge-Multiplier.git
-```
-
 Após a clonagem
 
 ```cmd
-cd Challenge-Multiplier/
+cd Challenge-Multiplier-API/
 ```
 
 Para montar a infraestrutura de desenvolvimento eu utilizei o Laradock.
@@ -82,6 +76,8 @@ php artisan key:generate
 
 Para gerar alguns registros no banco de dados execute:
 
+> Se utilizar o backup não é necessário esta etapa
+
 ```cmd
 php artisan migrate --seed
 ```
@@ -118,4 +114,3 @@ User: default
 Password: secret
 ```
 
-### [Portainer](http://localhost:9010)
