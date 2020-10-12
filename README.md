@@ -10,7 +10,7 @@ Após a clonagem
 cd Challenge-Multiplier-API/
 ```
 
-Para montar a infraestrutura de desenvolvimento eu utilizei o Laradock.
+Para montar a infraestrutura de desenvolvimento eu utilizei o [Laradock](https://laradock.io/getting-started/).
 
 Clone o Laradock como submodulo utilizando o seguinte comando:
 
